@@ -1,0 +1,14 @@
+<form id="formAddArticle" name="addArticle" method="post" action="formSubmit" enctype="multipart/form-data">
+  <div class="modal-body">
+    <h3> Title</h3>
+    <input type="text" id="articleTitle" name="articleTitle" class="form-control" placeholder="Write your short article title here"></input>
+    <h3> Text </h3>
+		<textarea class="form-control" rows="6" id="articleText" name="articleText">Write the whole article here </textarea>
+		<h3> Photo </h3>
+		<input type="file" id="articleImage" name="image"></image>
+	</div>
+	<div class="modal-footer">
+  	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  	<button type="submit" id="btnSubmit" class="btn btn-primary addNewsArticle">Create Article</button>
+</div>
+</form>
