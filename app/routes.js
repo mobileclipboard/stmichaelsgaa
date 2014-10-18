@@ -187,6 +187,12 @@ module.exports = function(app, passport) {
 
 	});
 
+	app.get('/delete_date/:date_id', isLoggedInAsAdmin, function(req, res, next){
+		var date_id = req.params.date_id;
+		Diary.find({_id: date_id}).remove().exec();
+		res.redirect('/checkusertype');
+	});
+
 };
 
 // route middleware to make sure a user is logged in

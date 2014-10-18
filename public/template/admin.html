@@ -159,7 +159,29 @@ MENU
 <!-- 1B.ii) Edit Date (id - editDate) -->
 <!-- 1B.iii) View Date (id - viewDate) -->
 
-		
+<div class="modal fade" id="viewDate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+        	<div class="modal-header">
+          		<button type="button" class="close" data-dismiss="modal">
+  		         	<span aria-hidden="true">&times;</span>
+            		<span class="sr-only">Close</span>
+            	</button>
+                <h4 class="modal-title" id="myModalLabel">{{currentDate.diary_title}}</h4>
+        	</div>
+          		<div class="modal-body">
+	              		<p>Event details: {{currentDate.diary_description}}</p>
+	              		<p>Location: {{currentDate.diary_location}}</p>
+	              		<p>Date: {{currentDate.diary_startdate | date: 'MMM, d'}}</p>
+	              		<p>Time: {{currentDate.diary_startdate | date: 'H:mm'}} - {{currentDate.diary_enddate | date: 'H:mm'}}</p>
+              	</div>
+              	<div class="modal-footer">
+            		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            	</div>
+            </form>
+        </div>
+    </div>
+</div>		
 
 
 
@@ -214,7 +236,7 @@ MENU
 			   <div class="list-group" ng-repeat="article in news | orderBy: '-news_date'">
 			   		
 			   		<div class="list-group-item clearfix">
-			   			<a ng-click="view(article)">{{article.news_title}}</a> - {{article.news_date | date:'MMM, d'}}
+			   			<a ng-click="view_article(article)">{{article.news_title}}</a> - {{article.news_date | date:'MMM, d'}}
 			   			<span class="pull-right">
 			   				<!-- Single button -->
 							<div class="btn-group">
@@ -222,7 +244,7 @@ MENU
 							    Action <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu" role="menu">
-							    <li><a ng-click="edit(article)">Edit</a></li>
+							    <li><a ng-click="edit_article(article)">Edit</a></li>
 							    <li><a href="/deleteArticle/{{article._id}}">Delete</a></li>
 							  </ul>
 							</div>

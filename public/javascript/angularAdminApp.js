@@ -46,15 +46,20 @@ angularAdminApp.controller('adminCtrl', ['$scope', 'api', function($scope, api){
 	$scope.news = api.news;
 	$scope.dates = api.dates;
 
-	$scope.edit = function(article){
+	$scope.edit_article = function(article){
 		$scope.currentArticle =  article;
 		$('#editArticle').modal('show');
 		console.log(article._id);
 	};
 
-	$scope.view = function(article){
+	$scope.view_article = function(article){
 		$scope.currentArticle =  article;
 		$('#viewArticle').modal('show');
+	};
+
+	$scope.view_date = function(date){
+		$scope.currentDate =  date;
+		$('#viewDate').modal('show');
 	};
 
 	// Code for datepicker
