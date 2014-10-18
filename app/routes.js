@@ -83,7 +83,6 @@ module.exports = function(app, passport) {
 	var mongoose = require('mongoose');
 	var Users = mongoose.model('User');
 	var News = mongoose.model('News');
-
 	var NewsArticle	= require('./models/news');
 
 	//API to access json of users
@@ -102,8 +101,6 @@ module.exports = function(app, passport) {
 	});
 
 	app.post('/addArticle', isLoggedInAsAdmin, function(req, res, next){
-		console.log(req.body);
-		console.log(req.files);
 		var newArticle =  new NewsArticle();
 		newArticle.news_title = req.body.articleTitle	
 		newArticle.news_article = req.body.articleText;
@@ -138,11 +135,56 @@ module.exports = function(app, passport) {
 	});
 
 
-	app.get('/delete/:article_id', isLoggedInAsAdmin, function(req, res, next){
+	app.get('/deleteArticle/:article_id', isLoggedInAsAdmin, function(req, res, next){
 		var article_id = req.params.article_id;
 		console.log(article_id);
 		News.find({_id: article_id}).remove().exec();
 		res.redirect('/checkusertype');
+	});
+
+	var Diary = mongoose.model('Diary');
+	var DiaryDate	= require('./models/diary');
+
+	app.get('/diaryapi', isLoggedInAsAdmin, function(req, res, next){
+		Diary.find(function(err, news){
+			if(err){return next(err)};
+			res.json(news);
+		}); 
+	});
+
+	app.post('/addDate', isLoggedInAsAdmin, function(req, res, next){
+		var newDate =  new DiaryDate();
+		newDate.diary_title = req.body.dateTitle	
+		newDate.diary_description = req.body.dateDescription;
+		
+		newDate.diary_location = req.body.dateLocation;
+
+
+		var start_time = new Date();
+		start_time.setFullYear(req.body.dateStartYear);
+		start_time.setMonth(req.body.dateStartMonth);
+		start_time.setDate(req.body.dateStartDay);
+		start_time.setHours(req.body.dateStartHour);
+		start_time.setMinutes(req.body.dateStartMinute);
+		newDate.diary_startdate = start_time;
+		
+		var end_time = new Date();
+		end_time.setFullYear(req.body.dateStartYear);
+		end_time.setMonth(req.body.dateStartMonth);
+		end_time.setDate(req.body.dateStartDay);
+		end_time.setHours(req.body.dateEndHour);
+		end_time.setMinutes(req.body.dateEndMinute);
+		newDate.diary_enddate = end_time;
+
+		console.log(newDate);
+		newDate.save(function(err, newDate){
+			if(err)
+				throw err;
+			res.json(newDate);
+		});
+		res.redirect('/checkusertype');
+
+
 	});
 
 };
