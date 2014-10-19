@@ -157,6 +157,59 @@ MENU
 </div>
 
 <!-- 1B.ii) Edit Date (id - editDate) -->
+
+<div class="modal fade" id="editDate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+        	<div class="modal-header">
+          		<button type="button" class="close" data-dismiss="modal">
+  		         	<span aria-hidden="true">&times;</span>
+            		<span class="sr-only">Close</span>
+            	</button>
+                <h4 class="modal-title" id="myModalLabel">Change event details</h4>
+        	</div>
+        	<form id="formEditDate" name="editDate" method="post" action="{{'editDate/' + currentDate._id}}">
+          		<div class="modal-body">
+              		<h3>Event Name</h3>
+              		<input type="text" id="dateTitle" name="dateTitle" class="form-control" value = "{{currentDate.diary_title}}"></input>
+              		<h3>Event Description</h3>
+              		<textarea class="form-control" rows="6" id="dateDescription" name="dateDescription">{{currentDate.diary_description}}</textarea>
+              		<h3>Location</h3>
+              		<input type="text" id="dateLocation" name="dateLocation" class="form-control" value="{{currentDate.diary_location}}"></input>
+              		<h3>Date</h3>
+              		<p class="input-group">
+              			<input type="text" class="form-control" name="dateStartDate" datepicker-popup="dd-MMMM-yyyy" ng-model="mystarttime" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" value="{{mystarttime | date: 'dd-MMMM-yyyy'}}">
+              			<span class="input-group-btn">
+              				<button type="button"class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+	              		</span>
+	              		<input type="hidden" name="dateStartDay" value="{{mystarttime.getDate()}}">
+	              		<input type="hidden" name="dateStartMonth" value="{{mystarttime.getMonth()}}">
+	              		<input type="hidden" name="dateStartYear" value="{{mystarttime.getFullYear()}}">
+	              	</p>
+	              	<div class="row">
+		              	<div class="col-md-6">
+			              	<h3>Start Time</h3>
+			              	<timepicker ng-model="mystarttime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" value="{{mystarttime}}"></timepicker>
+			              	<input type="hidden" name="dateStartHour" value="{{mystarttime.getHours()}}">
+	              			<input type="hidden" name="dateStartMinute" value="{{mystarttime.getMinutes()}}">
+			            </div>
+			            <div class="col-md-6">
+			              	<h3>End Time</h3>
+			              	<timepicker ng-model="myendtime" name="dateEndTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" value="{{myendtime}}"></timepicker>
+			              	<input type="hidden" name="dateEndHour" value="{{myendtime.getHours()}}">
+	              			<input type="hidden" name="dateEndMinute" value="{{myendtime.getMinutes()}}">
+			            </div>
+              		</div>
+              	</div>
+              	<div class="modal-footer">
+            		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            		<button type="submit" id="btnSubmit" class="btn btn-primary">Create Event</button>
+            	</div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- 1B.iii) View Date (id - viewDate) -->
 
 <div class="modal fade" id="viewDate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

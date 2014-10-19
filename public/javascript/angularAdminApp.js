@@ -49,7 +49,6 @@ angularAdminApp.controller('adminCtrl', ['$scope', 'api', function($scope, api){
 	$scope.edit_article = function(article){
 		$scope.currentArticle =  article;
 		$('#editArticle').modal('show');
-		console.log(article._id);
 	};
 
 	$scope.view_article = function(article){
@@ -60,6 +59,13 @@ angularAdminApp.controller('adminCtrl', ['$scope', 'api', function($scope, api){
 	$scope.view_date = function(date){
 		$scope.currentDate =  date;
 		$('#viewDate').modal('show');
+	};
+
+	$scope.edit_date = function(date){
+		$scope.currentDate =  date;
+		$scope.mystarttime = new Date(date.diary_startdate);
+		$scope.myendtime = new Date(date.diary_enddate);
+		$('#editDate').modal('show');
 	};
 
 	// Code for datepicker
@@ -74,11 +80,6 @@ angularAdminApp.controller('adminCtrl', ['$scope', 'api', function($scope, api){
 		formatYear: 'yy',
 		startingDay: 1
 	};
-
-	$scope.today = function() {
-    	$scope.dt = new Date();
-  	};
-  	$scope.today();
 
 	$scope.mystarttime = new Date();
 	$scope.mystarttime.setHours(12);

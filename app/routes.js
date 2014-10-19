@@ -187,6 +187,26 @@ module.exports = function(app, passport) {
 
 	});
 
+	app.post('/editDate/:date_id', isLoggedInAsAdmin, function(req, res, next){
+		var date_id = req.params.date_id;
+		console.log(req.body);
+		
+		/*
+		Diary.update({_id: article_id}, {
+			news_title: req.body.articleTitle,	
+			news_article: req.body.articleText
+		},
+		{multi: false},
+			function(err, numAffected){
+				console.log(numAffected);
+			}
+		);
+
+		*/
+		res.redirect('/checkusertype');
+	
+	});
+
 	app.get('/delete_date/:date_id', isLoggedInAsAdmin, function(req, res, next){
 		var date_id = req.params.date_id;
 		Diary.find({_id: date_id}).remove().exec();
