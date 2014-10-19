@@ -274,86 +274,72 @@ MENU
 	<div class="row">
 		<div class="col-md-12">
 		<!-- News -->
-			<div class="panel panel-primary">
-			  <div class="panel-heading">
-			  	<div class="row">
-				    <div class="col-md-6">
-					    <h3 class="panel-title">News</h3>
-					</div>
-					<div class="col-md-6">
-					    <button class="btn btn-default pull-right" data-toggle="modal" data-target="#addArticle">Add Article</button>
-					</div>
-				</div>
-			  </div>
-			  <div class="panel-body">
-			   <div class="list-group" ng-repeat="article in news | orderBy: '-news_date'">
-			   		
-			   		<div class="list-group-item clearfix">
-			   			<a ng-click="view_article(article)">{{article.news_title}}</a> - {{article.news_date | date:'MMM, d'}}
-			   			<span class="pull-right">
-			   				<!-- Single button -->
-							<div class="btn-group">
-							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-							    Action <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu" role="menu">
-							    <li><a ng-click="edit_article(article)">Edit</a></li>
-							    <li><a href="/deleteArticle/{{article._id}}">Delete</a></li>
-							  </ul>
+			<accordion close-others="true">
+			  	<accordion-group>
+			  		<accordion-heading>
+					  	<div class="row">
+						    <div class="col-md-6">
+							    <h3 class="panel-title">News</h3>
 							</div>
-			   			</span>
-			   		</div>
-
-
-
-				</div>
-			  </div>
-			</div>
-		</div>
-
-	</div>
+							<div class="col-md-6">
+							    <button class="btn btn-default pull-right" data-toggle="modal" data-target="#addArticle">Add Article</button>
+							</div>
+						</div>
+					</accordion-heading>
+			   		<div class="list-group" ng-repeat="article in news | orderBy: '-news_date'">
+			   		
+				   		<div class="list-group-item clearfix">
+				   			<a ng-click="view_article(article)">{{article.news_title}}</a> - {{article.news_date | date:'MMM, d'}}
+				   			<span class="pull-right">
+				   				<!-- Single button -->
+								<div class="btn-group">
+								  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								    Action <span class="caret"></span>
+								  </button>
+								  <ul class="dropdown-menu" role="menu">
+								    <li><a ng-click="edit_article(article)">Edit</a></li>
+								    <li><a href="/deleteArticle/{{article._id}}">Delete</a></li>
+								  </ul>
+								</div>
+				   			</span>
+				   		</div>
+					</div>
+			  	</accordion-group>
 			
 <!--
 ##################
 Diary section
 ##################
 -->
-
-	<div class="panel panel-primary">
-	  <div class="panel-heading">
-	  	<div class="row">
-		    <div class="col-md-6">
-			    <h3 class="panel-title">Dates for your diary</h3>
-			</div>
-			<div class="col-md-6">
-			    <button class="btn btn-default pull-right" data-toggle="modal" data-target="#addDate">Add Date</button>
-			</div>
-		</div>
-	  </div>
-	  <div class="panel-body">
-	   <div class="list-group" ng-repeat="date in dates">
-	   		
-	   		<div class="list-group-item clearfix">
-	   			<a ng-click="view_date(date)">{{date.diary_title}}</a> - {{date.diary_startdate | date:'MMM, d @ H:mm'}} until {{date.diary_enddate | date:'H:mm'}}
-	   			<span class="pull-right">
-	   				<!-- Single button -->
-					<div class="btn-group">
-					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					    Action <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" role="menu">
-					    <li><a ng-click="edit_date(date)">Edit</a></li>
-					    <li><a href="/delete_date/{{date._id}}">Delete</a></li>
-					  </ul>
+				<accordion-group>
+					<accordion-heading>
+					  	<div class="row">
+						    <div class="col-md-6">
+							    <h3 class="panel-title">Dates for your diary</h3>
+							</div>
+							<div class="col-md-6">
+							    <button class="btn btn-default pull-right" data-toggle="modal" data-target="#addDate">Add Date</button>
+							</div>
+						</div>
+					</accordion-heading>
+	   				<div class="list-group" ng-repeat="date in dates">
+				   		<div class="list-group-item clearfix">
+				   			<a ng-click="view_date(date)">{{date.diary_title}}</a> - {{date.diary_startdate | date:'MMM, d @ H:mm'}} until {{date.diary_enddate | date:'H:mm'}}
+				   			<span class="pull-right">
+				   				<!-- Single button -->
+								<div class="btn-group">
+								  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								    Action <span class="caret"></span>
+								  </button>
+								  <ul class="dropdown-menu" role="menu">
+								    <li><a ng-click="edit_date(date)">Edit</a></li>
+								    <li><a href="/delete_date/{{date._id}}">Delete</a></li>
+								  </ul>
+								</div>
+				   			</span>
+				   		</div>
 					</div>
-	   			</span>
-	   		</div>
-
-
-
-		</div>
-	  </div>
-	</div>
+	  			</accordion-group>
 
 
 <!--
@@ -362,21 +348,17 @@ Members section
 ##################
 -->
 
-	<div class="row">
-		<div class="col-md-12">
-			<!-- News -->
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-				  	<div class="row">
-					    <div class="col-md-6">
-						    <h3 class="panel-title">Members</h3>
+				<accordion-group>
+					<accordion-heading>
+					  	<div class="row">
+						    <div class="col-md-6">
+							    <h3 class="panel-title">Members</h3>
+							</div>
+							<div class="col-md-6">
+							    <button class="btn btn-default pull-right">Register Member</button>
+							</div>
 						</div>
-						<div class="col-md-6">
-						    <button class="btn btn-default pull-right">Register Member</button>
-						</div>
-					</div>
-				</div>
-				<div class="panel-body">
+					</accordion-heading>
 				   	<div class="list-group" ng-repeat="user in users | orderBy: 'paid_until'">
 				   		<div class="list-group-item clearfix">
 				   			<a href="#">{{user.first_name}} {{user.second_name}}</a>
@@ -395,11 +377,11 @@ Members section
 				   			</span>
 				   		</div>
 					</div>
-				  </div>
-				</div>
-			</div>
-
+				</accordion-group>
+			</accordion>
 		</div>
 
-
 	</div>
+
+
+</div>
