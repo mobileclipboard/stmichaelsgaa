@@ -191,18 +191,32 @@ module.exports = function(app, passport) {
 		var date_id = req.params.date_id;
 		console.log(req.body);
 		
-		/*
-		Diary.update({_id: article_id}, {
-			news_title: req.body.articleTitle,	
-			news_article: req.body.articleText
+		var start_time = new Date();
+		start_time.setFullYear(req.body.dateStartYear);
+		start_time.setMonth(req.body.dateStartMonth);
+		start_time.setDate(req.body.dateStartDay);
+		start_time.setHours(req.body.dateStartHour);
+		start_time.setMinutes(req.body.dateStartMinute);
+		
+		var end_time = new Date();
+		end_time.setFullYear(req.body.dateStartYear);
+		end_time.setMonth(req.body.dateStartMonth);
+		end_time.setDate(req.body.dateStartDay);
+		end_time.setHours(req.body.dateEndHour);
+		end_time.setMinutes(req.body.dateEndMinute);
+
+		Diary.update({_id: date_id}, {
+			diary_title: req.body.dateTitle,	
+			diary_description: req.body.dateDescription,
+			diary_location: req.body.dateLocation,
+			diary_startdate: start_time,
+			diary_enddate: end_time
 		},
 		{multi: false},
 			function(err, numAffected){
 				console.log(numAffected);
 			}
 		);
-
-		*/
 		res.redirect('/checkusertype');
 	
 	});

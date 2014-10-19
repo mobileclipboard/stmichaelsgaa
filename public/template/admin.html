@@ -322,7 +322,7 @@ Diary section
 							</div>
 						</div>
 					</accordion-heading>
-	   				<div class="list-group" ng-repeat="date in dates">
+	   				<div class="list-group" ng-repeat="date in dates | orderBy: 'diary_startdate'">
 				   		<div class="list-group-item clearfix">
 				   			<a ng-click="view_date(date)">{{date.diary_title}}</a> - {{date.diary_startdate | date:'MMM, d @ H:mm'}} until {{date.diary_enddate | date:'H:mm'}}
 				   			<span class="pull-right">
