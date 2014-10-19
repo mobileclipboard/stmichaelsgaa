@@ -96,4 +96,8 @@ angularAdminApp.controller('adminCtrl', ['$scope', 'api', function($scope, api){
 
 	//END Code for datepicker
 
+	$scope.accordion_status = {
+	    isFirstOpen: true
+  	};
+
 }]);
