@@ -255,11 +255,11 @@ MENU
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">News</a></li>
-	        <li><a href="#">Diary</a></li>
+	        <li class="active"><a>News</a></li>
+	        <li><a>Diary</a></li>
 
-	        <li><a href="#">Discounts</a></li>
-	        <li><a href="#">Members</a></li>
+	        <li><a>Discounts</a></li>
+	        <li><a>Members</a></li>
 
 	      </ul>
 	        
@@ -275,7 +275,7 @@ MENU
 		<div class="col-md-12">
 		<!-- News -->
 			<accordion close-others="true">
-			  	<accordion-group is-open="accordion_status.isFirstOpen">
+			  	<accordion-group is-open="accordion_status.newsOpen">
 			  		<accordion-heading>
 					  	<div class="row">
 						    <div class="col-md-6">
@@ -311,7 +311,7 @@ MENU
 Diary section
 ##################
 -->
-				<accordion-group>
+				<accordion-group is-open="accordion_status.diaryOpen">
 					<accordion-heading>
 					  	<div class="row">
 						    <div class="col-md-6">
@@ -348,7 +348,7 @@ Members section
 ##################
 -->
 
-				<accordion-group>
+				<accordion-group is-open="accordion_status.membersOpen">
 					<accordion-heading>
 					  	<div class="row">
 						    <div class="col-md-6">
