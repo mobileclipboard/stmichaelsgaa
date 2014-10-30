@@ -112,7 +112,7 @@ MENU
   		         	<span aria-hidden="true">&times;</span>
             		<span class="sr-only">Close</span>
             	</button>
-                <h4 class="modal-title" id="myModalLabel"> Create a new date</h4>
+                <h4 class="modal-title" id="myModalLabel">Create a new event</h4>
         	</div>
         	<form id="formAddDate" name="addDate" method="post" action="addDate">
           		<div class="modal-body">
@@ -236,6 +236,46 @@ MENU
     </div>
 </div>		
 
+<!-- Add Discount Modal -->
+<div class="modal fade" id="addDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+        	<div class="modal-header">
+          		<button type="button" class="close" data-dismiss="modal">
+  		         	<span aria-hidden="true">&times;</span>
+            		<span class="sr-only">Close</span>
+            	</button>
+                <h4 class="modal-title" id="myModalLabel">Create a new discount</h4>
+        	</div>
+        	<form id="formAddDiscount" name="addDiscount" method="post" action="addDiscount">
+          		<div class="modal-body">
+              		<h3>Company Name</h3>
+              		<input type="text" id="discountCompanyName" name="discountCompanyName" class="form-control" placeholder="Write your short discount title here"></input>
+              		<h3> Discount Title</h3>
+              		<input type="text" id="discountTitle" name="discountTitle" class="form-control" placeholder="Write your short discount title here"></input>
+              		<h3> Discount Description </h3>
+              		<textarea class="form-control" rows="6" id="discountText" name="discountText">Give a longer description, including T&Cs here</textarea>
+              		<h3> Discount Category </h3>
+              		<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+					    Dropdown
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" ng-repeat="category in discount_categories">
+					    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{category.category_name}}</a></li>
+					    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Add new category</a></li>
+					  </ul>
+					</div>
+              	</div>
+              	<div class="modal-footer">
+            		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            		<button type="submit" id="btnSubmit" class="btn btn-primary">Create Article</button>
+            	</div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 <nav class="navbar navbar-default" role="navigation">
@@ -255,11 +295,11 @@ MENU
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a>News</a></li>
-	        <li><a>Diary</a></li>
+	        <li ng-class="{active: accordion_status.newsOpen}"><a ng-click="accordion_open('news')">News</a></li>
+	        <li ng-class="{active: accordion_status.diaryOpen}"><a ng-click="accordion_open('diary')">Events</a></li>
 
-	        <li><a>Discounts</a></li>
-	        <li><a>Members</a></li>
+	        <li ng-class="{active: accordion_status.discountsOpen}"><a ng-click="accordion_open('discounts')">Discounts</a></li>
+	        <li ng-class="{active: accordion_status.membersOpen}"><a ng-click="accordion_open('members')">Members</a></li>
 
 	      </ul>
 	        
@@ -315,10 +355,10 @@ Diary section
 					<accordion-heading>
 					  	<div class="row">
 						    <div class="col-md-6">
-							    <h3 class="panel-title">Dates for your diary</h3>
+							    <h3 class="panel-title">Events</h3>
 							</div>
 							<div class="col-md-6">
-							    <button class="btn btn-default pull-right custom-button-width" data-toggle="modal" data-target="#addDate">Add Date</button>
+							    <button class="btn btn-default pull-right custom-button-width" data-toggle="modal" data-target="#addDate">Add Event</button>
 							</div>
 						</div>
 					</accordion-heading>
@@ -341,6 +381,42 @@ Diary section
 					</div>
 	  			</accordion-group>
 
+<!--
+##################
+Discounts section
+##################
+-->
+
+				<accordion-group is-open="accordion_status.discountsOpen">
+					<accordion-heading>
+					  	<div class="row">
+						    <div class="col-md-6">
+							    <h3 class="panel-title">Discounts</h3>
+							</div>
+							<div class="col-md-6">
+							    <button class="btn btn-default pull-right custom-button-width" data-toggle="modal" data-target="#addDiscount">Add Discount</button>
+							</div>
+						</div>
+					</accordion-heading>
+				   	<div class="list-group" ng-repeat="discount in discounts">
+				   		<div class="list-group-item clearfix">
+				   			<a href="#">{{discount.discount_company.name}} - {{discount.discount_title}}</a>
+				   			<span class="pull-right">
+				   				<!-- Single button -->
+								<div class="btn-group">
+								  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								    Action <span class="caret"></span>
+								  </button>
+								  <ul class="dropdown-menu" role="menu">
+								    <li><a href="#">Edit</a></li>
+								    <li><a href="#">Delete</a></li>
+								  </ul>
+								</div>
+				   			</span>
+				   		</div>
+					</div>
+				</accordion-group>
+
 
 <!--
 ##################
@@ -355,7 +431,7 @@ Members section
 							    <h3 class="panel-title">Members</h3>
 							</div>
 							<div class="col-md-6">
-							    <button class="btn btn-default pull-right custom-button-width">Register Member</button>
+							    <button class="btn btn-default pull-right custom-button-width">Add Member</button>
 							</div>
 						</div>
 					</accordion-heading>

@@ -97,11 +97,20 @@ angularAdminApp.controller('adminCtrl', ['$scope', 'api', function($scope, api){
 	//END Code for datepicker
 
 	$scope.accordion_status = {
-	    newsOpen: true
-	    /*
+	    newsOpen: true,
 	    diaryOpen: false,
 	    discountsOpen: false,
-	    membersOpen: false*/
+	    membersOpen: false
+  	};
+
+  	$scope.currentOpen = "news";
+
+  	
+
+  	$scope.accordion_open = function(section){
+  		$scope.accordion_status[$scope.currentOpen + 'Open'] = false;
+  		$scope.accordion_status[section + 'Open'] = true;
+  		$scope.currentOpen = section;
   	};
 
 }]);

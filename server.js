@@ -10,6 +10,7 @@ var multer = require('multer');
 var flash = require('connect-flash');
 var path = require('path'); // used for setting the public directory
 
+
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -24,6 +25,8 @@ mongoose.connect(configDB.url); // connect to our database
 require('./config/passport')(passport); // pass passport for Configuration
 require('./app/models/news.js');
 require('./app/models/diary.js');
+require('./app/models/discounts.js');
+require('./app/models/discount_categories.js');
 
 // set up our express application
 
@@ -31,7 +34,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 app.use(multer({
-	dest: './public/images', 
+	dest: './public/images/content_photos', 
 	rename: function (fieldname, filename) {
     	return filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
     },

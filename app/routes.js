@@ -137,7 +137,12 @@ module.exports = function(app, passport) {
 
 	app.get('/deleteArticle/:article_id', isLoggedInAsAdmin, function(req, res, next){
 		var article_id = req.params.article_id;
-		console.log(article_id);
+		News.where({_id: article_id}).findOne(function(err, article){
+			var fs = require('fs');
+			for (var i =0; i<article.news_photos.length; i ++){
+				fs.unlinkSync(article.news_photos[i]);
+			};
+		});
 		News.find({_id: article_id}).remove().exec();
 		res.redirect('/checkusertype');
 	});
